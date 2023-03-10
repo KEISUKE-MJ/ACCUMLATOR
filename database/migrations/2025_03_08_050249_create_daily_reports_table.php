@@ -18,8 +18,9 @@ return new class extends Migration
             $table->text('participant_client');
             $table->text('content');
             $table->string('image');
-            // $table->int('client_id')->references('id')->on('clients');
             // $table->int('user_id')->references('id')->on('users');
+            $table->foreignId('client_id')->constrained('clients');
+            $table->foreignId('project_id')->constrained('projects');
             $table->timestamps();
         });
     }

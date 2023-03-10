@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project;
+use App\Models\Client;
 
 class DailyReport extends Model
 {
@@ -20,4 +22,16 @@ class DailyReport extends Model
     ];
 
     protected $guarded = ['created_at', 'updated_at'];
+
+    public function project(){
+
+        return $this->belongsTo(Project::class,'project_id');
+       
+    }
+
+    public function client(){
+
+        return $this->belongsTo(Client::class,'client_id');
+       
+    }
 }
