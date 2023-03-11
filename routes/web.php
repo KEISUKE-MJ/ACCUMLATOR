@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('/',[DailyreportController::class,'index'])->name('dailyreport.index');
+    Route::get('/show/{id}',[DailyreportController::class,'show'])->name('dailyreport.show');
 });
 
 Route::middleware('auth')->group(function () {

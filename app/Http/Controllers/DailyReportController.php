@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class DailyReportController extends Controller
 {
-    public function index(){
-        // $testE = DailyReport::all();
-        // $testQ = DB::table('daily_reports')->select('participant_matsui')->get();
-        // $dailyreport = Project::all();
-        
+    public function index(){       
         $dailyreports = DailyReport::with(['project','client','user','status'])->get();
         return view('dailyreport.index',compact('dailyreports'));
+    }
+
+    public function show($id){
+        $dailyreport = DailyReport::with(['project','client','user','status'])->findOrFail($id);
+        return view('dailyreport.show',compact('dailyreport'));
     }
 }

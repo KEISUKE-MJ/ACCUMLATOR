@@ -13,6 +13,7 @@
                     <div class="w-full mx-5">
                         @foreach($dailyreports as $E)
                         <div class="bg-white text-gray-500 text-xs my-2 p-3">
+                            <a href="{{ route('dailyreport.show',[$E->id]) }}">
                             <div class="flex items-start">
                                 <div class="text-center">
                                     <p class="m-1 text-gray-500 border-b-2 border-gray-200 bg-blue-100">ID:<span>{{$E->id}}</span></p>
@@ -25,14 +26,14 @@
                                     <p class="m-1"><span class="font-semibold m-1">顧客側:</span>{{$E->participant_client}}</p>
                                     <p class="m-1"><span class="font-semibold bg-blue-100">ステータス:</span>{{$E->status->name}}</p>
                                     <p class="m-1"><span class="font-semibold bg-blue-100">作成者:</span>{{$E->user->name}}</p>
-                                    <p class="m-1"><span class="font-semibold bg-blue-100">作成日:</span></p>
-                                    <p class="m-1"><span class="font-semibold bg-blue-100">更新日:</span></p>
+                                    <p class="m-1"><span class="font-semibold bg-blue-100">作成日:</span>{{$E->created_at}}</p>
                                 </div>
-                              
-                            </div> 
+
+                            </div>
                             <div class="m-1"><span class="font-semibold bg-blue-100">日報内容:</span>{{$E->content}}</div>
+                            </a>
                         </div>
-                        @endforeach      
+                        @endforeach
                     </div>
                 </div>
             </section>
