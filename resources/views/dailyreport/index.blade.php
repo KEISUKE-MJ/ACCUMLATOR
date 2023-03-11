@@ -23,7 +23,8 @@
                                     <h2 class="m-1 font-semibold bg-blue-100">参加者：</h2>
                                     <p class="m-1"><span class="font-semibold m-1">松井色素側:</span>{{$E->participant_matsui}}</p>
                                     <p class="m-1"><span class="font-semibold m-1">顧客側:</span>{{$E->participant_client}}</p>
-                                    <p class="m-1"><span class="font-semibold bg-blue-100">ステータス:</span></p>
+                                    <p class="m-1"><span class="font-semibold bg-blue-100">ステータス:</span>{{$E->status->name}}</p>
+                                    <p class="m-1"><span class="font-semibold bg-blue-100">作成者:</span>{{$E->user->name}}</p>
                                     <p class="m-1"><span class="font-semibold bg-blue-100">作成日:</span></p>
                                     <p class="m-1"><span class="font-semibold bg-blue-100">更新日:</span></p>
                                 </div>

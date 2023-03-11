@@ -14,7 +14,7 @@ class DailyReportController extends Controller
         // $testQ = DB::table('daily_reports')->select('participant_matsui')->get();
         // $dailyreport = Project::all();
         
-        $dailyreports = DailyReport::with(['project','client'])->get();
+        $dailyreports = DailyReport::with(['project','client','user','status'])->get();
         return view('dailyreport.index',compact('dailyreports'));
     }
 }

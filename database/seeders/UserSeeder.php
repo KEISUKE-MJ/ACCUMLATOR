@@ -13,10 +13,33 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'UserName',
-            'email' => 'password@gmail.com',
-            'password' => bcrypt('password'),
-        ]);
+        $users = [
+            [
+                'name'=>"a",
+                'email'=>"password@gmail.com",
+            ],
+            [
+                'name'=>"b",
+                'email'=>"b@gmail.com",
+            ],
+            [
+                'name'=>"c",
+                'email'=>"c@gmail.com",
+            ],
+            [
+                'name'=>"d",
+                'email'=>"d@gmail.com",
+            ],    
+        ];
+
+        // foreachを使用しなければ、うまくシードを挿入できない。
+        foreach($users as $user){
+            DB::table('users')->insert([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => bcrypt('password'),
+            ]);
+        };
+       
     }
 }
