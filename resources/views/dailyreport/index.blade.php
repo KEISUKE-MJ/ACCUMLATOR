@@ -10,27 +10,49 @@
         <div class="max-w-7xl mx-auto">
             <section class="text-gray-600 body-font">
                 <div class="container py-12 mx-auto">
-                    <div class="w-full mx-5">
+                    <div class="w-full mx-5 flex flex-wrap">
                         @foreach($dailyreports as $E)
-                        <div class="bg-white text-gray-500 text-xs my-2 p-3">
+                        <div class="bg-white border-2 border-gray-200 border-opacity-60 text-gray-500 m-2 max-w-md shadow shadow-slate-500">
                             <a href="{{ route('dailyreport.show',[$E->id]) }}">
-                            <div class="flex items-start">
-                                <div class="text-center">
-                                    <p class="m-1 text-gray-500 border-b-2 border-gray-200 bg-blue-100">ID:<span>{{$E->id}}</span></p>
-                                </div>
-                                <div class="m-1"><span class="font-semibold bg-blue-100">開発品名:</span>{{$E->project->name}}</div>
-                                <div class="m-1"><span class="font-semibold bg-blue-100">顧客名:</span>{{$E->client->name}}</div>
-                                <div class="flex pl-1 text-xs">
-                                    <h2 class="m-1 font-semibold bg-blue-100">参加者：</h2>
-                                    <p class="m-1"><span class="font-semibold m-1">松井色素側:</span>{{$E->participant_matsui}}</p>
-                                    <p class="m-1"><span class="font-semibold m-1">顧客側:</span>{{$E->participant_client}}</p>
-                                    <p class="m-1"><span class="font-semibold bg-blue-100">ステータス:</span>{{$E->status->name}}</p>
-                                    <p class="m-1"><span class="font-semibold bg-blue-100">作成者:</span>{{$E->user->name}}</p>
-                                    <p class="m-1"><span class="font-semibold bg-blue-100">作成日:</span>{{$E->created_at}}</p>
-                                </div>
+                                <div class="flex justify-between">
+                                    <div class="flex flex-col">
+                                        <div class="flex text-left text-gray-500">
+                                            <span class="text-xs pr-2">ID</span>
+                                            <span class="text-base">{{$E->id}}</span>
+                                        </div>
+                                        <div class="flex items-start flex-col w-23 p-1">
+                                            <div class="flex flex-col mb-1">
+                                                <p class="text-xs">開発品名</p>
+                                                <p class="font-semibold text-sm">{{$E->project->name}}</p>
 
-                            </div>
-                            <div class="m-1"><span class="font-semibold bg-blue-100">日報内容:</span>{{$E->content}}</div>
+                                            </div>
+                                            <div class="flex flex-col mb-1">
+                                                <p class="text-xs">顧客名</p>
+                                                <p class="font-semibold text-sm">{{$E->client->name}}</p>
+                                            </div>
+                                            <div class="flex flex-col mb-1">
+                                                <p class="text-xs">打合せ日時</p>
+                                                <p class="font-semibold text-sm">{{$E->meeting_date}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-between pl-1 text-xs">
+                                        <div class="font-semibold bg-green-100 align-middle w-20 h-4 text-xs text-center">{{$E->status->name}}</div>
+                                        <div class="flex flex-col">
+                                            <div class="flex flex-col mb-1">
+                                            <p class="text-xs">作成日</p>
+                                            <p class="font-semibold text-xs">{{$E->created_at->year}}年{{$E->created_at->month}}月{{$E->created_at->day}}日</p>
+
+                                            </div>
+                                            <div class="flex flex-col mb-1">
+                                            <p class="text-xs">作成者</p>
+                                            <p class="font-semibold text-xs">{{$E->user->name}}</p>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                             </a>
                         </div>
                         @endforeach

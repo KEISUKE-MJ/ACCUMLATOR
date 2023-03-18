@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/store',[DailyreportController::class,'store'])->name('dailyreport.store');
     Route::get('/show/{id}',[DailyreportController::class,'show'])->name('dailyreport.show');
     Route::get('/show/{id}/edit',[DailyreportController::class,'edit'])->name('dailyreport.edit');
+    Route::put('/show/{id}',[DailyreportController::class,'update'])->name('dailyreport.update');
 });
 
 Route::middleware('auth')->group(function () {

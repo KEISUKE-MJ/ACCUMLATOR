@@ -36,14 +36,14 @@ class DailyReportController extends Controller
             'client_id' => ['required'],
             'participant_matsui' => ['required'],
             'participant_client' => ['required'],
-            'project_id' =>['required'],
+            'project_id' => ['required'],
             'status_id' => ['required'],
             'user_id' => ['required'],
             'image' => ['required'],
             'content' => ['required'],
 
         ]);
-        
+
         Dailyreport::create([
             'meeting_date' => $request->meeting_date,
             'client_id' => $request->client_id,
@@ -55,7 +55,7 @@ class DailyReportController extends Controller
             'image' => $request->image,
             'content' => $request->content,
         ]);
-        
+
         return redirect()->route('dailyreport.index');
     }
 
@@ -68,6 +68,29 @@ class DailyReportController extends Controller
     public function edit($id)
     {
         $dailyreport = DailyReport::with(['project', 'client', 'user', 'status'])->findOrFail($id);
-        return view('dailyreport.edit', compact('dailyreport'));
+        $projects = Project::get();
+        $authuser = Auth::user();
+        $clients = Client::get();
+        $statuses = Status::get();
+        return view('dailyreport.edit', compact('dailyreport', 'projects', 'authuser', 'clients', 'statuses'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $dailyreport = DailyReport::with(['project', 'client', 'user', 'status'])->findOrFail($id);
+        $dailyreport->meeting_date = $request->meeting_date;
+        $dailyreport->client_id = $request->client_id;
+        $dailyreport->participant_matsui = $request->participant_matsui;
+        $dailyreport->participant_client = $request->participant_client;
+        $dailyreport->project_id = $request->project_id;
+        $dailyreport->status_id = $request->status_id;
+        $dailyreport->image = $request->image;
+        $dailyreport->content = $request->content;
+
+        $dailyreport->save();
+
+        return redirect()
+        ->route('dailyreport.show',$id)
+        ->with('message',"日報を更新しました");
     }
 }
