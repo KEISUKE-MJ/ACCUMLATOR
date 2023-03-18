@@ -14,7 +14,7 @@ class DailyReportController extends Controller
 {
     public function index()
     {
-        $dailyreports = DailyReport::with(['project', 'client', 'user', 'status'])->get();
+        $dailyreports = DailyReport::with(['project', 'client', 'user', 'status'])->paginate(10);
         return view('dailyreport.index', compact('dailyreports'));
     }
 
