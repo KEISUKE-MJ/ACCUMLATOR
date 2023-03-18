@@ -1,13 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-900 leading-tight">
-            日報詳細画面
+            日報編集画面
         </h2>
-        <div></div>
     </x-slot>
 
-    <div class="py-12">
-
+    <div class="py-5">
         <div class="max-w-7xl mx-auto">
             <section class="text-gray-600 body-font">
                 <div class="container px-5">
@@ -49,6 +47,5 @@
                     </div>
                 </div>
             </section>
-
         </div>
 </x-app-layout>

@@ -25,7 +25,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('/',[DailyreportController::class,'index'])->name('dailyreport.index');
+    Route::get('/create',[DailyreportController::class,'create'])->name('dailyreport.create');
+    Route::post('/store',[DailyreportController::class,'store'])->name('dailyreport.store');
     Route::get('/show/{id}',[DailyreportController::class,'show'])->name('dailyreport.show');
+    Route::get('/show/{id}/edit',[DailyreportController::class,'edit'])->name('dailyreport.edit');
 });
 
 Route::middleware('auth')->group(function () {
