@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
 use App\Models\Client;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DailyReport extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     Protected $fillable = [
         'meeting_date',

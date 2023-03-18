@@ -93,4 +93,13 @@ class DailyReportController extends Controller
         ->route('dailyreport.show',$id)
         ->with('message',"日報を更新しました");
     }
+
+    public function destroy($id)
+    {
+        DailyReport::findOrFail($id)->delete();
+
+        return redirect()
+        ->route('dailyreport.index')
+        ->with('message',"日報を削除しました");
+    }
 }

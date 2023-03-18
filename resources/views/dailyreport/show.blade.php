@@ -8,10 +8,6 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
-            <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
-
-            </div>
-
             <div class="container px-5">
                 <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
                     <div class="flex justify-between bg-blue-100 p-3">
@@ -19,8 +15,17 @@
                             <div><span class="font-semibold m-2">打合せ日時:</span>{{ $dailyreport -> meeting_date }}</div>
                             <h2 class="text-gray-900"><span class="font-semibold m-2">顧客名:</span> {{ $dailyreport -> client ->name}}</h2>
                         </div>
-                        <div>
-                            <a class="font-semibold bg-green-200 p-2 mb-20 text-xs text-center" href="{{ route('dailyreport.edit',[$dailyreport->id]) }}">編集</a>
+                        <div class="flex h-">
+                            <div class="font-semibold bg-green-400 p-2 m-2 text-xs text-center">
+                                <a href="{{ route('dailyreport.edit',[$dailyreport->id]) }}">編集</a>
+                            </div>
+                            <div class="font-semibold bg-gray-400 p-2 m-2 text-xs text-center">
+                                <form id="delete_{{$dailyreport->id}}" method="post" action="{{route('dailyreport.destroy',[$dailyreport->id])}}">
+                                    @csrf
+                                    @method('delete')
+                                    <a data-id="{{$dailyreport->id}}" onclick="deletePost(this)" href="#">削除</a>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white">
@@ -55,7 +60,13 @@
                     </div>
                 </div>
             </div>
-            </section>
-
         </div>
 </x-app-layout>
+<script>
+    function deletePost(e) {
+        'use strict'
+        if (confirm('本当に削除してもいいですか？')) {
+            document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
