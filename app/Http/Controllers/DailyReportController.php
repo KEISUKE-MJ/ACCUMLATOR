@@ -7,15 +7,30 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\DailyReport;
 use App\Models\Project;
 use App\Models\Client;
+use App\Models\User;
 use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 
 class DailyReportController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dailyreports = DailyReport::with(['project', 'client', 'user', 'status'])->paginate(10);
-        return view('dailyreport.index', compact('dailyreports'));
+        // dd($request);
+        $projects = Project::get();
+        $users = User::get();
+        $authuser = Auth::user();
+        $clients = Client::get();
+        $statuses = Status::get();
+        $dailyreports = DailyReport::with(['project', 'client', 'user', 'status'])
+            ->filterProject($request->project ?? '0')
+            ->filterStatus($request->status ?? '0')
+            ->filterUser($request->user ?? '0')
+            ->filterClient($request->client ?? '0')
+            ->sortDailyReport($request->sort)
+            ->paginate($request->pagination ?? '20');
+
+
+        return view('dailyreport.index', compact('projects', 'users', 'authuser', 'clients', 'statuses', 'dailyreports'));
     }
 
     public function create()
@@ -90,8 +105,8 @@ class DailyReportController extends Controller
         $dailyreport->save();
 
         return redirect()
-        ->route('dailyreport.show',$id)
-        ->with('message',"日報を更新しました");
+            ->route('dailyreport.show', $id)
+            ->with('message', "日報を更新しました");
     }
 
     public function destroy($id)
@@ -99,7 +114,7 @@ class DailyReportController extends Controller
         DailyReport::findOrFail($id)->delete();
 
         return redirect()
-        ->route('dailyreport.index')
-        ->with('message',"日報を削除しました");
+            ->route('dailyreport.index')
+            ->with('message', "日報を削除しました");
     }
 }
