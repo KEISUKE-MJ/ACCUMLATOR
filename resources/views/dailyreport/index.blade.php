@@ -4,8 +4,7 @@
             日報一覧
         </h2>
     </x-slot>
-
-    <div class="text-gray-600 py-12 container mx-auto flex flex-wrap">
+    <div class="text-gray-600 mx-auto container py-12 flex flex-wrap">
         @foreach($dailyreports as $E)
         <div class="bg-white m-2 border-2 border-gray-200 border-opacity-60 text-gray-500 shadow shadow-slate-500">
             <a href="{{ route('dailyreport.show',[$E->id]) }}">
@@ -42,15 +41,16 @@
                             <div class="flex flex-col mb-1">
                                 <p class="text-xs">作成者</p>
                                 <p class="font-semibold text-xs">{{$E->user->name}}</p>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </a>
         </div>
         @endforeach
+    </div>
+    <div class="mx-auto py-2 flex justify-center">
+        {{ $dailyreports->links()}}
     </div>
 
 </x-app-layout>
