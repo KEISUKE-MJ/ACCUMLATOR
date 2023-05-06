@@ -15,19 +15,19 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name'=>"a",
+                'name'=>"山本 浩二",
                 'email'=>"password@gmail.com",
             ],
             [
-                'name'=>"b",
+                'name'=>"西本 哲也",
                 'email'=>"b@gmail.com",
             ],
             [
-                'name'=>"c",
+                'name'=>"中西 周大",
                 'email'=>"c@gmail.com",
             ],
             [
-                'name'=>"d",
+                'name'=>"松本 優斗",
                 'email'=>"d@gmail.com",
             ],    
         ];
