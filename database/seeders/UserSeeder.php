@@ -17,18 +17,22 @@ class UserSeeder extends Seeder
             [
                 'name'=>"山本 浩二",
                 'email'=>"password@gmail.com",
+                'admin'=>"1",
             ],
             [
                 'name'=>"西本 哲也",
                 'email'=>"b@gmail.com",
+                'admin'=>"0",
             ],
             [
                 'name'=>"中西 周大",
                 'email'=>"c@gmail.com",
+                'admin'=>"0",
             ],
             [
                 'name'=>"松本 優斗",
                 'email'=>"d@gmail.com",
+                'admin'=>"0",
             ],    
         ];
 
@@ -36,6 +40,7 @@ class UserSeeder extends Seeder
         foreach($users as $user){
             DB::table('users')->insert([
                 'name' => $user['name'],
+                'admin' => $user['admin'],
                 'email' => $user['email'],
                 'password' => bcrypt('password'),
             ]);

@@ -22,6 +22,12 @@
                                 </div>
                                 <div class="pl-2 pb-2 w-1/2">
                                     <div class="relative">
+                                        <label for="approval" class="leading-7 text-sm text-gray-600">承認</label>
+                                        <input type="checkbox" id="approval" name="approval" value="{{ $dailyreport -> approval }}" class="bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    </div>
+                                </div>
+                                <div class="pl-2 pb-2 w-1/2">
+                                    <div class="relative">
                                         <label for="meeting_date" class="leading-7 text-sm text-gray-600">打合せ日時</label>
                                         <input type="date" id="meeting_date" name="meeting_date" value="{{ $dailyreport -> meeting_date }}" class="w-full bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
