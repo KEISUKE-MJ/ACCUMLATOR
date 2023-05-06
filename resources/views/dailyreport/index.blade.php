@@ -97,7 +97,14 @@
                         </div>
                     </div>
                     <div class="flex flex-col justify-between pl-1 text-xs">
-                        <div class="font-semibold bg-green-100 align-middle w-20 h-4 text-xs text-center">{{$E->status->name}}</div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold bg-green-100 align-middle w-20 h-4 text-xs text-center">{{$E->status->name}}</span>
+                            @if($E->approval === "1")
+                            <span class="font-semibold bg-green-100 align-middle w-20 h-4 text-xs text-center">承認済み</span>
+                            @else
+                            <span class="font-semibold bg-red-100 align-middle w-20 h-4 text-xs text-center">未承認</span>
+                            @endif
+                        </div>
                         <div class="flex flex-col">
                             <div class="flex flex-col mb-1">
                                 <p class="text-xs">作成日</p>

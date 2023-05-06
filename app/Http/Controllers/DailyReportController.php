@@ -29,7 +29,6 @@ class DailyReportController extends Controller
             ->sortDailyReport($request->sort)
             ->paginate($request->pagination ?? '20');
 
-
         return view('dailyreport.index', compact('projects', 'users', 'authuser', 'clients', 'statuses', 'dailyreports'));
     }
 
@@ -77,7 +76,12 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $dailyreport = DailyReport::with(['project', 'client', 'user', 'status'])->findOrFail($id);
-        return view('dailyreport.show', compact('dailyreport'));
+        if($dailyreport->approval === '1'){
+            $approve = "承認済み";
+        }else{
+            $approve = "未承認";
+        }
+        return view('dailyreport.show', compact('dailyreport','approve'));
     }
 
     public function edit($id)

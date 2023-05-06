@@ -20,6 +20,7 @@ class DailyReport extends Model
         'participant_client',
         'content',
         'image',
+        'approval',
         'client_id',
         'user_id',
         'status_id',

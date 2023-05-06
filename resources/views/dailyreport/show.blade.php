@@ -11,6 +11,15 @@
                 <div>顧客名:{{ $dailyreport -> client ->name}}</div>
             </div>
             <div class="flex p-2">
+                @if ($approve==="承認済み")
+                <div class="bg-blue-500 p-1 h-6 m-2 text-xs text-white">
+                    {{$approve}}
+                </div>
+                @else
+                <div class="bg-red-500 p-1 h-6 m-2 text-xs text-white">
+                    {{$approve}}
+                </div>
+                @endif
                 <div class="bg-green-500 p-1 h-6 m-2 text-xs text-white">
                     <a href="{{ route('dailyreport.edit',[$dailyreport->id]) }}">編集</a>
                 </div>

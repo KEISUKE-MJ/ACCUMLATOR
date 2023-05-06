@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('participant_matsui');
             $table->text('participant_client');
             $table->text('content');
+            $table->string('approval');
             $table->string('image');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('client_id')->constrained('clients');
